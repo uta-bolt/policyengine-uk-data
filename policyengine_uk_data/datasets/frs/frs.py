@@ -104,34 +104,31 @@ class FRS(Dataset):
         INPUT_PERIODS = list(range(self.time_period, self.time_period + 10))
         WEEKS_IN_YEAR = 52
         THRESHOLD_SAFETY_GAP = 10 * WEEKS_IN_YEAR
-        data["is_disabled_for_benefits"] = {}
-        data["is_enhanced_disabled_for_benefits"] = {}
-        data["is_severely_disabled_for_benefits"] = {}
-        for period in INPUT_PERIODS:
-            benefit = parameters(period).gov.dwp
-            data["is_disabled_for_benefits"][period] = (
-                person("dla", period) + person("pip", period) > 0
-            )
-            data["is_enhanced_disabled_for_benefits"][period] = (
-                person("dla_sc", period)
-                > benefit.dla.self_care.higher * WEEKS_IN_YEAR
-                - THRESHOLD_SAFETY_GAP
-            )
-            # Child Tax Credit Regulations 2002 s. 8
-            paragraph_3 = (
-                person("dla_sc", period)
-                >= benefit.dla.self_care.higher * WEEKS_IN_YEAR
-                - THRESHOLD_SAFETY_GAP
-            )
-            paragraph_4 = (
-                person("pip_dl", period)
-                >= benefit.pip.daily_living.enhanced * WEEKS_IN_YEAR
-                - THRESHOLD_SAFETY_GAP
-            )
-            paragraph_5 = person("afcs", period) > 0
-            data["is_severely_disabled_for_benefits"] = (
-                sum([paragraph_3, paragraph_4, paragraph_5]) > 0
-            )
+        period = self.time_period
+        benefit = parameters(period).gov.dwp
+        data["is_disabled_for_benefits"] = (
+            person("dla", period) + person("pip", period) > 0
+        )
+        data["is_enhanced_disabled_for_benefits"] = (
+            person("dla_sc", period)
+            > benefit.dla.self_care.higher * WEEKS_IN_YEAR
+            - THRESHOLD_SAFETY_GAP
+        )
+        # Child Tax Credit Regulations 2002 s. 8
+        paragraph_3 = (
+            person("dla_sc", period)
+            >= benefit.dla.self_care.higher * WEEKS_IN_YEAR
+            - THRESHOLD_SAFETY_GAP
+        )
+        paragraph_4 = (
+            person("pip_dl", period)
+            >= benefit.pip.daily_living.enhanced * WEEKS_IN_YEAR
+            - THRESHOLD_SAFETY_GAP
+        )
+        paragraph_5 = person("afcs", period) > 0
+        data["is_severely_disabled_for_benefits"] = (
+            sum([paragraph_3, paragraph_4, paragraph_5]) > 0
+        )
 
         self.save_dataset(data)
 
