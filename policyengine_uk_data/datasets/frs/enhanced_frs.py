@@ -69,6 +69,7 @@ class EnhancedFRS(Dataset):
         THRESHOLD_SAFETY_GAP = 10 * WEEKS_IN_YEAR
         data["is_disabled_for_benefits"] = {}
         for period in INPUT_PERIODS:
+            benefit = parameters(period).gov.dwp
             data["is_disabled_for_benefits"][period] = (
                 person("dla", period) + person("pip", period) > 0
             )
@@ -77,7 +78,6 @@ class EnhancedFRS(Dataset):
                 > benefit.dla.self_care.higher * WEEKS_IN_YEAR
                 - THRESHOLD_SAFETY_GAP
             )
-            benefit = parameters(period).gov.dwp
             # Child Tax Credit Regulations 2002 s. 8
             paragraph_3 = (
                 person("dla_sc", period)
