@@ -68,6 +68,8 @@ class EnhancedFRS(Dataset):
         WEEKS_IN_YEAR = 52
         THRESHOLD_SAFETY_GAP = 10 * WEEKS_IN_YEAR
         data["is_disabled_for_benefits"] = {}
+        data["is_enhanced_disabled_for_benefits"] = {}
+        data["is_severely_disabled_for_benefits"] = {}
         for period in INPUT_PERIODS:
             benefit = parameters(period).gov.dwp
             data["is_disabled_for_benefits"][period] = (
