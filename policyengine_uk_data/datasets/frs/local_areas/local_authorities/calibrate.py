@@ -12,20 +12,21 @@ from policyengine_uk_data.datasets.frs.local_areas.local_authorities.loss import
     create_local_authority_target_matrix,
     create_national_target_matrix,
 )
+from policyengine_uk_data.datasets import EnhancedFRS_2022_23
 
 DEVICE = "cpu"
 
 
 def calibrate():
     matrix, y, r = create_local_authority_target_matrix(
-        "enhanced_frs_2022_23", 2025
+        EnhancedFRS_2022_23, 2025
     )
 
     m_national, y_national = create_national_target_matrix(
-        "enhanced_frs_2022_23", 2025
+        EnhancedFRS_2022_23, 2025
     )
 
-    sim = Microsimulation(dataset="enhanced_frs_2022_23")
+    sim = Microsimulation(dataset=EnhancedFRS_2022_23)
 
     count_local_authority = 360
 
