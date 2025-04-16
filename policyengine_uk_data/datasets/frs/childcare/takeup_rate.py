@@ -77,6 +77,10 @@ def run_simulation(params, seed=42):
             "would_claim_extended_childcare",
             "would_claim_targeted_childcare",
             "would_claim_universal_childcare",
+            "is_child_receiving_tax_free_childcare",
+            "is_child_receiving_extended_childcare",
+            "is_child_receiving_universal_childcare",
+            "is_child_receiving_targeted_childcare",
         ],
         2025,
     )
@@ -94,28 +98,10 @@ def run_simulation(params, seed=42):
     }
 
     caseload = {
-        "tfc": df[(df["tax_free_childcare"] > 0) & (df["age"] < 12)][
-            "would_claim_tfc"
-        ].sum()
-        / 1e3,
-        "extended": df[
-            (df["extended_childcare_entitlement"] > 0)
-            & (df["age"] < 4)
-            & (df["age"] > 0.9)
-        ]["would_claim_extended_childcare"].sum()
-        / 1e3,
-        "universal": df[
-            (df["universal_childcare_entitlement"] > 0)
-            & (df["age"] < 5)
-            & (df["age"] >= 3)
-        ]["would_claim_universal_childcare"].sum()
-        / 1e3,
-        "targeted": df[
-            (df["targeted_childcare_entitlement"] > 0)
-            & (df["age"] < 3)
-            & (df["age"] >= 2)
-        ]["would_claim_targeted_childcare"].sum()
-        / 1e3,
+        "tfc": df["is_child_receiving_tax_free_childcare"].sum() / 1e3,
+        "extended": df["is_child_receiving_extended_childcare"].sum() / 1e3,
+        "universal": df["is_child_receiving_universal_childcare"].sum() / 1e3,
+        "targeted": df["is_child_receiving_targeted_childcare"].sum() / 1e3,
     }
 
     return spending, caseload
