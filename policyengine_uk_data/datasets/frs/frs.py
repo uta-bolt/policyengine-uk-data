@@ -163,11 +163,19 @@ class FRS(Dataset):
         targeted_would_claim = (
             np.random.random(len(simulation.calculate("benunit_id"))) < 0.59
         )
-        for period in INPUT_PERIODS:
-            frs["would_claim_extended_childcare"] = extended_would_claim
-            frs["would_claim_tfc"] = tfc_would_claim
-            frs["would_claim_universal_childcare"] = universal_would_claim
-            frs["would_claim_targeted_childcare"] = targeted_would_claim
+
+        frs["would_claim_extended_childcare"] = {
+            period: extended_would_claim for period in INPUT_PERIODS
+        }
+        frs["would_claim_tfc"] = {
+            period: tfc_would_claim for period in INPUT_PERIODS
+        }
+        frs["would_claim_universal_childcare"] = {
+            period: universal_would_claim for period in INPUT_PERIODS
+        }
+        frs["would_claim_targeted_childcare"] = {
+            period: targeted_would_claim for period in INPUT_PERIODS
+        }
 
         self.save_dataset(frs)
 
