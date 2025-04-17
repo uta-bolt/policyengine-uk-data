@@ -20,14 +20,16 @@ targets = {
 
 
 # 📦 Simulation runner
-def simulate_childcare_programs(params: list[float], seed: int = 42) -> tuple[dict[str, float], dict[str, float]]:
+def simulate_childcare_programs(
+    params: list[float], seed: int = 42
+) -> tuple[dict[str, float], dict[str, float]]:
     """
     Run a simulation with given takeup rates and childcare hours parameters.
-    
+
     Args:
         params: List of parameter values [tfc_rate, extended_rate, targeted_rate, universal_rate, mean_hours, stderr_hours]
         seed: Random seed for reproducibility
-        
+
     Returns:
         tuple: (spending, caseload) dictionaries with results for each childcare program
     """
@@ -121,10 +123,10 @@ def simulate_childcare_programs(params: list[float], seed: int = 42) -> tuple[di
 def objective(params: list[float]) -> float:
     """
     Calculate the loss between simulated and target values for childcare programs.
-    
+
     Args:
         params: List of parameter values [tfc_rate, extended_rate, targeted_rate, universal_rate, mean_hours, stderr_hours]
-        
+
     Returns:
         float: Combined loss value measuring distance from targets
     """
@@ -142,7 +144,7 @@ if __name__ == "__main__":
     # 🧠 Initial values and bounds
     x0 = [0.5, 0.5, 0.5, 0.5, 20, 5]  # take-up rates + mean hours + stderr
     bounds = [(0, 1)] * 4 + [(0, 30), (0, 30)]
-    
+
     # 🚀 Run optimization
     result = minimize(
         objective,
@@ -151,7 +153,7 @@ if __name__ == "__main__":
         method="L-BFGS-B",
         options={"maxiter": 50, "eps": 1e-2, "disp": True},
     )
-    
+
     # ✅ Final output
     print("\n✅ Optimized Parameters:")
     print(f"Tax-Free Childcare: {result.x[0]:.3f}")
