@@ -95,7 +95,7 @@ def calibrate():
 
     optimizer = torch.optim.Adam([weights], lr=0.15)
 
-    desc = range(32) if os.environ.get("DATA_LITE") else range(512)
+    desc = range(32) if os.environ.get("DATA_LITE") else range(128)
 
     for epoch in desc:
         optimizer.zero_grad()

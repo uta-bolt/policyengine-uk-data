@@ -26,7 +26,7 @@ FOLDER = Path(__file__).parent
 
 
 def calibrate(
-    epochs: int = 256,
+    epochs: int = 128,
     excluded_training_targets=[],
     log_csv="training_log.csv",
     overwrite_efrs=True,
