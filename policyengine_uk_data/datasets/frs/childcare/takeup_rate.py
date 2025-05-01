@@ -24,16 +24,20 @@ def simulate_childcare_programs(
     params: list[float], seed: int = 42
 ) -> tuple[dict[str, float], dict[str, float]]:
     """
-    Run a simulation with given takeup rates and childcare hours parameters.
+    Run a simulation with given takeup rates for childcare programs.
 
     Args:
-        params: List of parameter values [tfc_rate, extended_rate, targeted_rate, universal_rate, mean_hours, stderr_hours]
+        params: List of parameter values [tfc_rate, extended_rate, targeted_rate, universal_rate]
         seed: Random seed for reproducibility
 
     Returns:
         tuple: (spending, caseload) dictionaries with results for each childcare program
     """
-    tfc, extended, targeted, universal, mean_hours, stderr_hours = params
+    tfc, extended, targeted, universal = params
+    
+    # Fixed childcare hours parameters
+    mean_hours = 20
+    stderr_hours = 5
 
     # Initialize sim
     sim = Microsimulation(
@@ -125,7 +129,7 @@ def objective(params: list[float]) -> float:
     Calculate the loss between simulated and target values for childcare programs.
 
     Args:
-        params: List of parameter values [tfc_rate, extended_rate, targeted_rate, universal_rate, mean_hours, stderr_hours]
+        params: List of parameter values [tfc_rate, extended_rate, targeted_rate, universal_rate]
 
     Returns:
         float: Combined loss value measuring distance from targets
@@ -142,8 +146,8 @@ def objective(params: list[float]) -> float:
 
 if __name__ == "__main__":
     # 🧠 Initial values and bounds
-    x0 = [0.5, 0.5, 0.5, 0.5, 20, 5]  # take-up rates + mean hours + stderr
-    bounds = [(0, 1)] * 4 + [(0, 30), (0, 30)]
+    x0 = [0.5, 0.5, 0.5, 0.5]  # take-up rates only
+    bounds = [(0, 1)] * 4
 
     # 🚀 Run optimization
     result = minimize(
@@ -160,6 +164,4 @@ if __name__ == "__main__":
     print(f"Extended Childcare: {result.x[1]:.3f}")
     print(f"Targeted Childcare: {result.x[2]:.3f}")
     print(f"Universal Childcare: {result.x[3]:.3f}")
-    print(f"Mean Hours Used: {result.x[4]:.2f}")
-    print(f"StdDev Hours Used: {result.x[5]:.2f}")
     print(f"Final Loss: {result.fun:.4f}")
