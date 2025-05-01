@@ -35,10 +35,6 @@ def simulate_childcare_programs(
     """
     tfc, extended, targeted, universal = params
 
-    # Fixed childcare hours parameters
-    mean_hours = 20
-    stderr_hours = 5
-
     # Initialize sim
     sim = Microsimulation(
         dataset="hf://policyengine/policyengine-uk-data/enhanced_frs_2022_23.h5"
@@ -70,16 +66,6 @@ def simulate_childcare_programs(
         2025,
         np.random.random(benunit_count) < universal,
     )
-
-    # Entitlement hours (clipped normal distribution per person)
-    hours = np.clip(
-        np.random.normal(
-            loc=mean_hours, scale=stderr_hours, size=person_count
-        ),
-        0,
-        30,
-    )
-    sim.set_input("max_free_entitlement_hours_used", 2025, hours)
 
     # Calculate outputs
     df = sim.calculate_dataframe(
