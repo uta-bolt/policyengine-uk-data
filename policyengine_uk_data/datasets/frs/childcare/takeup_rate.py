@@ -34,7 +34,7 @@ def simulate_childcare_programs(
         tuple: (spending, caseload) dictionaries with results for each childcare program
     """
     tfc, extended, targeted, universal = params
-    
+
     # Fixed childcare hours parameters
     mean_hours = 20
     stderr_hours = 5
