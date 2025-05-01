@@ -1,4 +1,4 @@
 - bump: patch
   changes:
-    fixed:
-    - Re-added North West calibration.
+    added:
+    - Childcare takeup rates.
