@@ -21,7 +21,7 @@ def test_childcare():
 
     # Initialize simulation
     sim = Microsimulation(dataset=EnhancedFRS_2022_23)
-    
+
     # Calculate dataframe with all required variables
     df = sim.calculate_dataframe(
         [
@@ -37,15 +37,20 @@ def test_childcare():
         ],
         2025,
     )
-    
+
     # Calculate actual spending values
     spending = {
         "tfc": sim.calculate("tax_free_childcare", 2025).sum() / 1e9,
-        "extended": sim.calculate("extended_childcare_entitlement", 2025).sum() / 1e9,
-        "targeted": sim.calculate("targeted_childcare_entitlement", 2025).sum() / 1e9,
-        "universal": sim.calculate("universal_childcare_entitlement", 2025).sum() / 1e9,
+        "extended": sim.calculate("extended_childcare_entitlement", 2025).sum()
+        / 1e9,
+        "targeted": sim.calculate("targeted_childcare_entitlement", 2025).sum()
+        / 1e9,
+        "universal": sim.calculate(
+            "universal_childcare_entitlement", 2025
+        ).sum()
+        / 1e9,
     }
-    
+
     # Calculate actual caseload values
     caseload = {
         "tfc": df["is_child_receiving_tax_free_childcare"].sum() / 1e3,
@@ -53,11 +58,13 @@ def test_childcare():
         "universal": df["is_child_receiving_universal_childcare"].sum() / 1e3,
         "targeted": df["is_child_receiving_targeted_childcare"].sum() / 1e3,
     }
-    
+
     # Print results table
     print("\n===== CHILDCARE TEST RESULTS =====")
     print("\nSPENDING (£ billion):")
-    print(f"{'PROGRAM':<12} {'ACTUAL':<10} {'TARGET':<10} {'RATIO':<10} {'PASS?':<10}")
+    print(
+        f"{'PROGRAM':<12} {'ACTUAL':<10} {'TARGET':<10} {'RATIO':<10} {'PASS?':<10}"
+    )
     print("-" * 55)
 
     failed_any = False
@@ -67,21 +74,27 @@ def test_childcare():
         ratio = spending[key] / target_spending
         passed = abs(ratio - 1) < 0.2
         status = "✓" if passed else "✗"
-        print(f"{key.upper():<12} {spending[key]:<10.3f} {target_spending:<10.3f} {ratio:<10.3f} {status:<10}")
+        print(
+            f"{key.upper():<12} {spending[key]:<10.3f} {target_spending:<10.3f} {ratio:<10.3f} {status:<10}"
+        )
         if not passed:
             failed_any = True
-    
+
     print("\nCASELOAD (thousands):")
-    print(f"{'PROGRAM':<12} {'ACTUAL':<10} {'TARGET':<10} {'RATIO':<10} {'PASS?':<10}")
+    print(
+        f"{'PROGRAM':<12} {'ACTUAL':<10} {'TARGET':<10} {'RATIO':<10} {'PASS?':<10}"
+    )
     print("-" * 55)
-    
+
     # Test caseload for each program
     for key in targets["caseload"]:
         target_caseload = targets["caseload"][key]
         ratio = caseload[key] / target_caseload
         passed = abs(ratio - 1) < 0.2
         status = "✓" if passed else "✗"
-        print(f"{key.upper():<12} {caseload[key]:<10.1f} {target_caseload:<10.1f} {ratio:<10.3f} {status:<10}")
+        print(
+            f"{key.upper():<12} {caseload[key]:<10.1f} {target_caseload:<10.1f} {ratio:<10.3f} {status:<10}"
+        )
         if not passed:
             failed_any = True
 
