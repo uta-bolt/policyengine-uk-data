@@ -96,6 +96,32 @@ class EnhancedFRS(Dataset):
                 sum([paragraph_3, paragraph_4, paragraph_5]) > 0
             )
 
+        extended_would_claim = (
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.44
+        )
+        tfc_would_claim = (
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.39
+        )
+        universal_would_claim = (
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.36
+        )
+        targeted_would_claim = (
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.62
+        )
+
+        data["would_claim_extended_childcare"] = {
+            period: extended_would_claim for period in INPUT_PERIODS
+        }
+        data["would_claim_tfc"] = {
+            period: tfc_would_claim for period in INPUT_PERIODS
+        }
+        data["would_claim_universal_childcare"] = {
+            period: universal_would_claim for period in INPUT_PERIODS
+        }
+        data["would_claim_targeted_childcare"] = {
+            period: targeted_would_claim for period in INPUT_PERIODS
+        }
+
         self.save_dataset(data)
 
 
