@@ -152,16 +152,16 @@ class FRS(Dataset):
             frs[variable] = {period: value for period in INPUT_PERIODS}
 
         extended_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.53
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.44
         )
         tfc_would_claim = (
             np.random.random(len(simulation.calculate("benunit_id"))) < 0.39
         )
         universal_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.32
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.36
         )
         targeted_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.59
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.62
         )
 
         frs["would_claim_extended_childcare"] = {
