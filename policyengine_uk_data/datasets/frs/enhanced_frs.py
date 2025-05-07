@@ -97,16 +97,16 @@ class EnhancedFRS(Dataset):
             )
 
         extended_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.44
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0
         )
         tfc_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.33
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0
         )
         universal_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.38
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0
         )
         targeted_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.63
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0
         )
 
         data["would_claim_extended_childcare"] = {
