@@ -6,17 +6,17 @@ def test_childcare():
     # Define targets (same as in the optimization script)
     targets = {
         "spending": {
-            "tfc": 0.6,
-            "extended": 2.5,
-            "targeted": 0.6,
-            "universal": 1.7,
-        },
-        "caseload": {
-            "tfc": 485,
-            "extended": 740,
-            "targeted": 130,
-            "universal": 490,
-        },
+        "tfc": 0.6,
+        "extended": 2.5,
+        "targeted": 0.6,
+        "universal": 1.7,
+    },
+    "caseload": {
+        "tfc": 660,
+        "extended": 740,
+        "targeted": 130,
+        "universal": 490,
+    },
     }
 
     # Initialize simulation
