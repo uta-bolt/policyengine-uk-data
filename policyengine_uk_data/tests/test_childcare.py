@@ -12,7 +12,7 @@ def test_childcare():
             "universal": 1.7,
         },
         "caseload": {
-            "tfc": 960,
+            "tfc": 485,
             "extended": 740,
             "targeted": 130,
             "universal": 490,
