@@ -35,18 +35,18 @@ def test_childcare():
             "is_child_receiving_universal_childcare",
             "is_child_receiving_targeted_childcare",
         ],
-        2025,
+        2024,
     )
 
     # Calculate actual spending values
     spending = {
-        "tfc": sim.calculate("tax_free_childcare", 2025).sum() / 1e9,
-        "extended": sim.calculate("extended_childcare_entitlement", 2025).sum()
+        "tfc": sim.calculate("tax_free_childcare", 2024).sum() / 1e9,
+        "extended": sim.calculate("extended_childcare_entitlement", 2024).sum()
         / 1e9,
-        "targeted": sim.calculate("targeted_childcare_entitlement", 2025).sum()
+        "targeted": sim.calculate("targeted_childcare_entitlement", 2024).sum()
         / 1e9,
         "universal": sim.calculate(
-            "universal_childcare_entitlement", 2025
+            "universal_childcare_entitlement", 2024
         ).sum()
         / 1e9,
     }

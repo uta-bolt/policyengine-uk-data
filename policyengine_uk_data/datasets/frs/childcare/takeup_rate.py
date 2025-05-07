@@ -49,21 +49,21 @@ def simulate_childcare_programs(
 
     # Take-up flags
     sim.set_input(
-        "would_claim_tfc", 2025, np.random.random(benunit_count) < tfc
+        "would_claim_tfc", 2024, np.random.random(benunit_count) < tfc
     )
     sim.set_input(
         "would_claim_extended_childcare",
-        2025,
+        2024,
         np.random.random(benunit_count) < extended,
     )
     sim.set_input(
         "would_claim_targeted_childcare",
-        2025,
+        2024,
         np.random.random(benunit_count) < targeted,
     )
     sim.set_input(
         "would_claim_universal_childcare",
-        2025,
+        2024,
         np.random.random(benunit_count) < universal,
     )
 
@@ -84,17 +84,17 @@ def simulate_childcare_programs(
             "is_child_receiving_universal_childcare",
             "is_child_receiving_targeted_childcare",
         ],
-        2025,
+        2024,
     )
 
     spending = {
-        "tfc": sim.calculate("tax_free_childcare", 2025).sum() / 1e9,
-        "extended": sim.calculate("extended_childcare_entitlement", 2025).sum()
+        "tfc": sim.calculate("tax_free_childcare", 2024).sum() / 1e9,
+        "extended": sim.calculate("extended_childcare_entitlement", 2024).sum()
         / 1e9,
-        "targeted": sim.calculate("targeted_childcare_entitlement", 2025).sum()
+        "targeted": sim.calculate("targeted_childcare_entitlement", 2024).sum()
         / 1e9,
         "universal": sim.calculate(
-            "universal_childcare_entitlement", 2025
+            "universal_childcare_entitlement", 2024
         ).sum()
         / 1e9,
     }
