@@ -18,6 +18,15 @@ targets = {
     },
 }
 
+# Here is the link to the UK government’s aggregate data for Tax-Free Childcare:
+# https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024
+
+# This is the Department for Education (DfE) data for the other childcare programmes:
+# https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025
+
+# For our calculations, please refer to this file:
+# https://docs.google.com/spreadsheets/d/1HLwxCJAJQNHa64peQFfV47MuNqoOHBJ9lnFENXMTguE/edit?gid=2100110594#gid=2100110594
+
 
 # 📦 Simulation runner
 def simulate_childcare_programs(
