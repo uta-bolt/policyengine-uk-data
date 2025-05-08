@@ -30,10 +30,15 @@ def test_childcare():
             "extended_childcare_entitlement",
             "universal_childcare_entitlement",
             "targeted_childcare_entitlement",
+            "would_claim_tfc",
+            "would_claim_extended_childcare",
+            "would_claim_targeted_childcare",
+            "would_claim_universal_childcare",
             "is_child_receiving_tax_free_childcare",
             "is_child_receiving_extended_childcare",
             "is_child_receiving_universal_childcare",
             "is_child_receiving_targeted_childcare",
+            "maximum_extended_childcare_hours_usage",  # Added this variable
         ],
         2024,
     )
@@ -59,8 +64,29 @@ def test_childcare():
         "targeted": df["is_child_receiving_targeted_childcare"].sum() / 1e3,
     }
 
+    # Calculate take-up rates for reporting
+    take_up_rates = {
+        "tfc": df["would_claim_tfc"].mean(),
+        "extended": df["would_claim_extended_childcare"].mean(),
+        "universal": df["would_claim_universal_childcare"].mean(),
+        "targeted": df["would_claim_targeted_childcare"].mean(),
+    }
+
+    # Report extended hours usage statistics
+    hours_mean = df["maximum_extended_childcare_hours_usage"].mean()
+    hours_std = df["maximum_extended_childcare_hours_usage"].std()
+
     # Print results table
     print("\n===== CHILDCARE TEST RESULTS =====")
+
+    print("\nTAKE-UP RATES:")
+    for key, rate in take_up_rates.items():
+        print(f"{key.upper():<12} {rate:.3f}")
+
+    print(
+        f"\nEXTENDED HOURS: Mean = {hours_mean:.2f}, Std Dev = {hours_std:.2f}"
+    )
+
     print("\nSPENDING (£ billion):")
     print(
         f"{'PROGRAM':<12} {'ACTUAL':<10} {'TARGET':<10} {'RATIO':<10} {'PASS?':<10}"

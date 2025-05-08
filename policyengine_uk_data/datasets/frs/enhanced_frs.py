@@ -109,6 +109,12 @@ class EnhancedFRS(Dataset):
             np.random.random(len(simulation.calculate("benunit_id"))) < 0.629
         )
 
+        # Generate extended childcare hours usage values with mean 15.019 and sd 4.972
+        benunit_count = len(simulation.calculate("benunit_id"))
+        extended_hours_values = np.random.normal(15.019, 4.972, benunit_count)
+        # Clip values to be between 0 and 30 hours
+        extended_hours_values = np.clip(extended_hours_values, 0, 30)
+
         data["would_claim_extended_childcare"] = {
             period: extended_would_claim for period in INPUT_PERIODS
         }
@@ -120,6 +126,11 @@ class EnhancedFRS(Dataset):
         }
         data["would_claim_targeted_childcare"] = {
             period: targeted_would_claim for period in INPUT_PERIODS
+        }
+
+        # Add the maximum extended childcare hours usage
+        data["maximum_extended_childcare_hours_usage"] = {
+            period: extended_hours_values for period in INPUT_PERIODS
         }
 
         self.save_dataset(data)
