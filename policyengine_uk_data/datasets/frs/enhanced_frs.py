@@ -97,16 +97,16 @@ class EnhancedFRS(Dataset):
             )
 
         extended_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.533
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.812
         )
         tfc_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.597
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.586
         )
         universal_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.447
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.563
         )
         targeted_would_claim = (
-            np.random.random(len(simulation.calculate("benunit_id"))) < 0.629
+            np.random.random(len(simulation.calculate("benunit_id"))) < 0.597
         )
 
         # Generate extended childcare hours usage values with mean 15.019 and sd 4.972
