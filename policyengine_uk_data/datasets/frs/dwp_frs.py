@@ -4,6 +4,7 @@ import pandas as pd
 import warnings
 from typing import Type
 from policyengine_uk_data.storage import STORAGE_FOLDER
+#STORAGE_FOLDER = Path("/Users/helenauta.bolt/Documents/GitHub/policyengine-uk-data/policyengine_uk_data/storage")
 
 
 class DWP_FRS(Dataset):
@@ -18,7 +19,7 @@ class DWP_FRS(Dataset):
         """
 
         tab_folder = self.folder
-
+        print(f"Initial self.folder: {tab_folder}")
         if isinstance(tab_folder, str):
             tab_folder = Path(tab_folder)
 
