@@ -1,0 +1,6 @@
+description: Most recent September CPIH index value, updated for each uprating occurrence (2005=100)
+values:
+  2005-01-01: 100
+metadata:
+  label: Benefit uprating index
+  uprating: gov.obr.consumer_price_index

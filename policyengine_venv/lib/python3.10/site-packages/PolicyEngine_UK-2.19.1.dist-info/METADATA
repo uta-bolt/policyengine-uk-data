@@ -1,0 +1,42 @@
+Metadata-Version: 2.2
+Name: PolicyEngine-UK
+Version: 2.19.1
+Summary: PolicyEngine tax and benefit system for the UK
+Home-page: https://github.com/PolicyEngine/policyengine-uk
+Author: PolicyEngine
+Author-email: nikhil@policyengine.org
+License: http://www.fsf.org/licensing/licenses/agpl-3.0.html
+Keywords: benefit microsimulation social tax
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: PolicyEngine-Core>=3.6.4
+Requires-Dist: PolicyEngine-UK-Data==1.9.0
+Requires-Dist: microdf_python
+Provides-Extra: dev
+Requires-Dist: tqdm; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: coverage; extra == "dev"
+Requires-Dist: furo<2023; extra == "dev"
+Requires-Dist: jupyter-book; extra == "dev"
+Requires-Dist: linecheck; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: setuptools; extra == "dev"
+Requires-Dist: sphinx-argparse<1,>=0.3.2; extra == "dev"
+Requires-Dist: sphinx-math-dollar<2,>=1.2.1; extra == "dev"
+Requires-Dist: wheel; extra == "dev"
+Requires-Dist: yaml-changelog>=0.1.7; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

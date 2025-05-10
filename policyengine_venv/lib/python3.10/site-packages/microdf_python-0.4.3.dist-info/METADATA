@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: microdf-python
+Version: 0.4.3
+Summary: Survey microdata as DataFrames.
+Home-page: http://github.com/PSLmodels/microdf
+Author: Max Ghenis
+Author-email: max@ubicenter.org
+License: MIT
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Provides-Extra: charts
+Requires-Dist: seaborn ; extra == 'charts'
+Requires-Dist: matplotlib ; extra == 'charts'
+Requires-Dist: matplotlib-label-lines ; extra == 'charts'
+Provides-Extra: taxcalc
+Requires-Dist: taxcalc ; extra == 'taxcalc'
+

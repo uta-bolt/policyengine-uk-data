@@ -1,0 +1,14 @@
+description: OBR forecast for non-labour income.
+values:
+  2022-01-01: 414.6
+  2023-01-01: 443.9
+  2024-01-01: 460.8
+  2025-01-01: 488.9
+  2026-01-01: 512.7
+  2027-01-01: 535.0
+  2028-01-01: 554.0
+  2029-01-01: 571.8
+metadata:
+  reference:
+    - title: OBR March 2024 EFO
+      href: https://obr.uk/efo/economic-and-fiscal-outlook-march-2024/
